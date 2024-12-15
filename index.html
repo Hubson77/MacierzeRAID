@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Macierze RAID - Przewodnik</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
+  <header>
+    <h1>Macierze RAID</h1>
+  </header>
+
+  <main>
+    <!-- Ogólne wyjaśnienie RAID -->
+    <section id="about">
+      <h2>Co to jest RAID?</h2>
+      <p>RAID (Redundant Array of Independent Disks) to technologia łączenia kilku dysków twardych w jeden zestaw (macierz), co pozwala na poprawę wydajności i/lub zapewnienie redundancji (czyli ochrony danych) w przypadku awarii jednego z dysków.</p>
+      <p>RAID może działać na różnych poziomach, które różnią się pod względem wydajności i ochrony danych. Każdy poziom RAID ma swoje unikalne cechy, zalety i wady. Kliknij na zakładki poniżej, aby dowiedzieć się więcej o każdym typie RAID.</p>
+    </section>
+
+    <!-- Zakładki dla każdego typu RAID -->
+    <section id="raidTabs">
+      <div class="tabs">
+        <button class="tab" onclick="showTab('raid0')" type="button">RAID 0</button>
+        <button class="tab" onclick="showTab('raid1')" type="button">RAID 1</button>
+        <button class="tab" onclick="showTab('raid2')" type="button">RAID 2</button>
+        <button class="tab" onclick="showTab('raid3')" type="button">RAID 3</button>
+        <button class="tab" onclick="showTab('raid4')" type="button">RAID 4</button>
+        <button class="tab" onclick="showTab('raid5')" type="button">RAID 5</button>
+        <button class="tab" onclick="showTab('raid6')" type="button">RAID 6</button>
+        <button class="tab" onclick="showTab('raid10')" type="button">RAID 10</button>
+        <button class="tab" onclick="showTab('raid50')" type="button">RAID 5+0</button>
+        <button class="tab" onclick="showTab('raid60')" type="button">RAID 6+0</button>
+        <button class="tab" onclick="showTab('raid01')" type="button">RAID 0+1</button>
+      </div>
+
+      <!-- Treść dla każdego typu RAID -->
+      <div id="raid0" class="tab-content">
+        <h3>RAID 0 - Stripping</h3>
+        <p><strong>Opis:</strong> RAID 0 dzieli dane na małe "paski" (stripes) i rozkłada je równolegle na dwóch lub więcej dyskach. Dane są zapisywane na dyskach naprzemiennie, co zwiększa szybkość odczytu i zapisu.​</p>
+        <p><strong>Zalety:</strong> Zwiększona wydajność zapisu i odczytu, ponieważ operacje są równolegle wykonywane na różnych dyskach.​</p>
+        <p><strong>Wady:</strong> Brak redundancji – awaria jednego dysku powoduje utratę wszystkich danych.​</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 2.​</p>
+        <p><strong>Zastosowanie:</strong> Wysoka wydajność w zadaniach, gdzie bezpieczeństwo danych nie jest kluczowe (np. w edycji wideo, renderowaniu).​</p>
+        <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*tv5m3e5J7QAGuSRx.png" alt="Diagram RAID 0" />
+      </div>
+      <div id="raid1" class="tab-content">
+        <h3>RAID 1 - Mirror</h3>
+        <p><strong>Opis:</strong> RAID 1 tworzy identyczne kopie danych (mirroring) na dwóch lub więcej dyskach. Każda zmiana na jednym dysku jest automatycznie kopiowana na pozostałe.​</p>
+        <p><strong>Zalety:</strong> Redundancja – w przypadku awarii jednego dysku, dane są nadal dostępne na drugim dysku. Zapewnia wysoką niezawodność.​</p>
+        <p><strong>Wady:</strong> Połowa pojemności dysków jest „stracona” na redundancję, ponieważ dane są duplikowane.​</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 2.​</p>
+        <p><strong>Zastosowanie:</strong> Systemy wymagające dużego bezpieczeństwa danych (np. serwery baz danych, komputery stacjonarne z ważnymi danymi).​</p>
+        <img src="https://s4694.pcdn.co/wp-content/uploads/2013/11/RAID1.jpg" alt="Diagram RAID 1" />
+      </div>
+      <div id="raid2" class="tab-content">
+        <h3>RAID 2 - Hamming Code</h3>
+        <p><strong>Opis:</strong> RAID 2 używa kodu Hamming do detekcji i naprawy błędów. Wszystkie dane są podzielone na małe kawałki i rozprowadzane po dyskach, z dodatkowym dyskiem do przechowywania kodów korekcyjnych.</p>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGfJ9udAihCKRowolhg8evY8r-Smuwr09NctmYgofRHtQPum1h16JGOjigaGO5Bew2THnJXTaZUxdGgFhc3t3w1MpYa4lljbDjKtwhxJSbl-sGwpKmIPwGG_akWVdooNN79XaYpp_D8hhO/s1600/raid+2.png" alt="Diagram RAID 2" />
+      </div>
+      <div id="raid3" class="tab-content">
+        <h3>RAID 3 - Byte-Level Striping with Dedicated Parity</h3>
+        <p><strong>Opis:</strong> RAID 3 dzieli dane na bajty i rozprowadza je po dyskach, z jednym dyskiem przeznaczonym na parzystość.</p>
+        <img src="https://phoenixnap.com/kb/wp-content/uploads/2021/12/raid-3-level.png" alt="Diagram RAID 3" />
+      </div>
+      <div id="raid4" class="tab-content">
+        <h3>RAID 4 - Block-Level Striping with Dedicated Parity</h3>
+        <p><strong>Opis:</strong> RAID 4 działa podobnie jak RAID 3, ale zamiast dzielić dane na bajty, dzieli je na bloki.</p>
+        <img src="https://phoenixnap.com/kb/wp-content/uploads/2021/12/raid-4-level.png" alt="Diagram RAID 4" />
+      </div>
+      <div id="raid5" class="tab-content">
+        <h3>RAID 5 - Striping with Parity</h3>
+        <p><strong>Opis:</strong> RAID 5 łączy striping (rozbicie danych na paski) z parzystością, która jest rozdzielona pomiędzy wszystkie dyski w macierzy. Parzystość pozwala na odbudowę danych w przypadku awarii jednego dysku.​</p>
+        <p><strong>Zalety:</strong> Dobre połączenie wydajności i redundancji. Awaria jednego dysku nie prowadzi do utraty danych, ponieważ dane można odzyskać dzięki parzystości.​</p>
+        <p><strong>Wady:</strong> Wydajność zapisu może być niższa niż w RAID 0 z powodu konieczności obliczania parzystości. Wymaga co najmniej trzech dysków.​</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 3.​</p>
+        <p><strong>Zastosowanie:</strong> Popularny wybór w systemach, które potrzebują połączenia wydajności i niezawodności (np. NAS, serwery plików).​</p>
+        <img src="https://www.optyczne.pl/upload2/230560_raid5.jpg" alt="Diagram RAID 5" />
+      </div>
+      <div id="raid6" class="tab-content">
+        <h3>RAID 6 - Striping with Double Parity</h3>
+        <p><strong>Opis:</strong> RAID 6 jest podobny do RAID 5, ale oferuje podwójną parzystość, co umożliwia odbudowę danych nawet po awarii dwóch dysków jednocześnie.​</p>
+        <p><strong>Zalety:</strong> Wyższa niezawodność niż RAID 5 – możliwa jest utrata dwóch dysków bez utraty danych.​</p>
+        <p><strong>Wady:</strong> Niższa wydajność zapisu niż RAID 5, ponieważ obliczana jest podwójna parzystość. Wymaga co najmniej czterech dysków.​</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 4.​</p>
+        <p><strong>Zastosowanie:</strong> Duże systemy przechowywania danych, gdzie bezpieczeństwo danych jest kluczowe (np. centra danych, duże NAS-y).​</p>
+        <img src="https://www.diskinternals.com/media/en/products/raid-recovery/RAID-6-d-r/RAID_6.svg" alt="Diagram RAID 6" />
+      </div>
+      <div id="raid10" class="tab-content">
+        <h3>RAID 10 - Striping + Mirror</h3>
+        <p><strong>Opis:</strong> RAID 10 to kombinacja RAID 1 (mirroring) i RAID 0 (striping). Dane są najpierw kopiowane na dyski (RAID 1), a następnie dzielone na paski (RAID 0). Dzięki temu zapewnia się zarówno wysoką wydajność, jak i redundancję.​</p>
+        <p><strong>Zalety:</strong> Doskonała wydajność i redundancja. Umożliwia odbudowę danych po awarii dysku bez utraty dostępu do danych.​</p>
+        <p><strong>Wady:</strong> Wymaga co najmniej czterech dysków i „traci” połowę pojemności na redundancję (dwa dyski dla każdego zestawu).​</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 4.​</p>
+        <p><strong>Zastosowanie:</strong> Aplikacje wymagające zarówno wysokiej wydajności, jak i wysokiej niezawodności (np. serwery baz danych, systemy transakcyjne).​</p>
+        <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*8qTKvJQTAfrAYEz2S9n6AQ.png" alt="Diagram RAID 10" />
+      </div>
+
+      <!-- Dodane poziomy RAID 5+0, 6+0, 0+1 -->
+      <div id="raid50" class="tab-content">
+        <h3>RAID 5+0 - Striping with Parity + Stripes</h3>
+        <p><strong>Opis:</strong> RAID 5+0 łączy RAID 5 z RAID 0, oferując zarówno striping z parzystością, jak i dodatkowy striping dla poprawy wydajności.</p>
+        <p><strong>Zalety:</strong> Łączy wydajność RAID 0 z redundancją RAID 5. Umożliwia szybszy dostęp do danych przy jednoczesnym zachowaniu ochrony danych.</p>
+        <p><strong>Wady:</strong> Wymaga co najmniej 6 dysków i może wymagać dodatkowej konfiguracji.</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 6.</p>
+        <p><strong>Zastosowanie:</strong> Wydajne rozwiązania do dużych baz danych i aplikacji wymagających dużej przepustowości i redundancji.</p>
+      </div>
+      <div id="raid60" class="tab-content">
+        <h3>RAID 6+0 - Double Parity + Stripes</h3>
+        <p><strong>Opis:</strong> RAID 6+0 łączy RAID 6 z RAID 0, zapewniając podwójną parzystość i wysoką wydajność dzięki stripingowi.</p>
+        <p><strong>Zalety:</strong> Podwójna parzystość RAID 6 zapewnia wysoką niezawodność, a RAID 0 poprawia wydajność.</p>
+        <p><strong>Wady:</strong> Wymaga co najmniej 8 dysków, może być bardziej skomplikowane w konfiguracji.</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 8.</p>
+        <p><strong>Zastosowanie:</strong> Wysoka niezawodność i wydajność w dużych systemach przechowywania danych.</p>
+      </div>
+      <div id="raid01" class="tab-content">
+        <h3>RAID 0+1 - Stripes + Mirror</h3>
+        <p><strong>Opis:</strong> RAID 0+1 to połączenie RAID 0 i RAID 1, w którym dane są najpierw rozdzielane na paski (RAID 0), a następnie duplikowane na drugim zestawie dysków (RAID 1).</p>
+        <p><strong>Zalety:</strong> Wysoka wydajność i redundancja. Zapewnia ochronę danych przy stosunkowo niskim koszcie.</p>
+        <p><strong>Wady:</strong> Wymaga co najmniej czterech dysków. Jeśli jeden dysk z jednego zestawu ulegnie awarii, cały zestaw jest utracony.</p>
+        <p><strong>Wymagana liczba dysków:</strong> Co najmniej 4.</p>
+        <p><strong>Zastosowanie:</strong> Potrzebne są zarówno szybkość, jak i redundancja, ale bez potrzeby dużej ilości dysków.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
